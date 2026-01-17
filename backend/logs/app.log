@@ -1,0 +1,416 @@
+2025-11-03 18:37:10,940 [INFO] Loading model artifacts from C:\Users\rumma\Desktop\Project - SecureScan\backend\models
+2025-11-03 18:37:11,935 [INFO] Artifacts loaded. model=True vectorizer=True thresholds=(0.6,0.45,0.55)
+2025-11-03 18:58:43,339 [INFO] Loading artifacts from C:\Users\rumma\Desktop\Project - SecureScan\backend\models
+2025-11-03 18:58:44,336 [INFO] Artifacts loaded. model=True vectorizer=True thresholds=(0.6,0.45,0.55)
+2025-11-03 19:03:48,099 [INFO] Loading artifacts from C:\Users\rumma\Desktop\Project - SecureScan\backend\models
+2025-11-03 19:03:49,075 [INFO] Artifacts loaded. model=True vectorizer=True thresholds=(0.6,0.45,0.55)
+2025-11-03 19:03:58,382 [INFO] [GRAY] http://google.com prob=0.5219 -> consult VT
+2025-11-03 19:04:01,265 [INFO] [RESULT] http://google.com -> safe (verified via VirusTotal) (p=0.52195) [ml_model+vt]
+2025-11-07 15:21:11,697 [INFO] Loading artifacts from C:\Users\rumma\Desktop\Project - SecureScan\backend\models
+2025-11-07 15:21:15,784 [INFO] Artifacts loaded. model=True vectorizer=True thresholds=(0.6,0.45,0.55)
+2025-11-07 15:21:30,659 [INFO] [GRAY] http://google.com prob=0.5219 -> consult VT
+2025-11-07 15:21:30,738 [ERROR] VirusTotal URL error for http://google.com: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/urls (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B989396A50>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x000001B989396A50>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/urls (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B989396A50>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\Desktop\Project - SecureScan\backend\app.py", line 358, in virustotal_url_report
+    submit = requests.post("https://www.virustotal.com/api/v3/urls", data={"url": url}, headers=headers, timeout=15)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/urls (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B989396A50>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+2025-11-07 15:21:31,055 [INFO] [RESULT] http://google.com -> suspicious (vt_unavailable) (p=0.52195) [ml_model+vt]
+2025-11-07 15:21:47,805 [INFO] [GRAY] https://google.com prob=0.5219 -> consult VT
+2025-11-07 15:21:47,811 [ERROR] VirusTotal URL error for https://google.com: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/urls (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B989448190>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x000001B989448190>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/urls (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B989448190>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\Desktop\Project - SecureScan\backend\app.py", line 358, in virustotal_url_report
+    submit = requests.post("https://www.virustotal.com/api/v3/urls", data={"url": url}, headers=headers, timeout=15)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/urls (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B989448190>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+2025-11-07 15:21:47,917 [INFO] [RESULT] https://google.com -> suspicious (vt_unavailable) (p=0.52195) [ml_model+vt]
+2025-11-07 15:22:13,164 [INFO] [RESULT] https://youtube.com -> safe (p=0.052133) [ml_model]
+2025-11-07 15:22:38,301 [ERROR] VirusTotal file error: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/files/05539866ae0ac8dc8c0679170e5035b14f0f9cbcbf221b766818846f390261d4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B989448B90>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x000001B989448B90>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/files/05539866ae0ac8dc8c0679170e5035b14f0f9cbcbf221b766818846f390261d4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B989448B90>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\Desktop\Project - SecureScan\backend\app.py", line 397, in virustotal_file_report
+    r = requests.get(f"https://www.virustotal.com/api/v3/files/{file_hash}", headers=headers, timeout=15)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/files/05539866ae0ac8dc8c0679170e5035b14f0f9cbcbf221b766818846f390261d4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001B989448B90>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+2025-11-10 19:38:07,786 [INFO] Loading artifacts from C:\Users\rumma\Desktop\Project - SecureScan\backend\models
+2025-11-10 19:38:14,342 [INFO] Artifacts loaded. model=True vectorizer=True thresholds=(0.6,0.45,0.55)
+2025-11-10 19:38:33,020 [INFO] [HEURISTIC_REJECT] http://paypal.secure-update.com -> suspicious_keyword
+2025-11-10 19:39:08,732 [INFO] [GRAY] https://google.com prob=0.5219 -> consult VT
+2025-11-10 19:39:10,457 [INFO] [RESULT] https://google.com -> safe (verified via VirusTotal) (p=0.52195) [ml_model+vt]
+2025-11-10 19:40:06,866 [WARNING] VT file lookup returned 404 for 4d2c1a7b9f0e5e8c2b91e63df8f7e7f2
+2025-11-12 14:04:46,512 [INFO] Loading artifacts from C:\Users\rumma\Desktop\Project - SecureScan\backend\models
+2025-11-12 14:04:54,782 [INFO] Artifacts loaded. model=True vectorizer=True thresholds=(0.6,0.45,0.55)
+2025-11-12 14:08:35,243 [INFO] [HEURISTIC_REJECT] http://www.ikenmijnkunst.nl/index.php/exposities/exposities-2006 -> suspicious_extension
+2025-11-12 14:09:08,820 [INFO] [RESULT] http://https:/youtube.com -> suspicious (p=0.580881) [ml_model]
+2025-11-12 14:09:20,008 [INFO] [RESULT] http://youtube.com -> safe (p=0.052133) [ml_model]
+2025-11-12 14:09:53,276 [INFO] [GRAY] http://google.com prob=0.5219 -> consult VT
+2025-11-12 14:09:53,328 [ERROR] VirusTotal URL error for http://google.com: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/urls (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000014FAF87A7B0>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x0000014FAF87A7B0>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/urls (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000014FAF87A7B0>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\Desktop\Project - SecureScan\backend\app.py", line 352, in virustotal_url_report
+    submit = requests.post("https://www.virustotal.com/api/v3/urls", data={"url": url}, headers=headers, timeout=15)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/urls (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000014FAF87A7B0>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+2025-11-12 14:09:53,655 [INFO] [RESULT] http://google.com -> suspicious (vt_unavailable) (p=0.52195) [ml_model+vt]
+2025-11-12 14:11:01,118 [ERROR] VirusTotal file error: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/files/2e120d7faddb78ce42ec6fb3ff2084ccb8fb272f04325c9f2fdbc18e20a83bbe (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000014FAF93D090>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x0000014FAF93D090>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/files/2e120d7faddb78ce42ec6fb3ff2084ccb8fb272f04325c9f2fdbc18e20a83bbe (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000014FAF93D090>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rumma\Desktop\Project - SecureScan\backend\app.py", line 391, in virustotal_file_report
+    r = requests.get(f"https://www.virustotal.com/api/v3/files/{file_hash}", headers=headers, timeout=15)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\rumma\AppData\Roaming\Python\Python314\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='www.virustotal.com', port=443): Max retries exceeded with url: /api/v3/files/2e120d7faddb78ce42ec6fb3ff2084ccb8fb272f04325c9f2fdbc18e20a83bbe (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000014FAF93D090>: Failed to resolve 'www.virustotal.com' ([Errno 11001] getaddrinfo failed)"))
+2025-11-12 14:44:13,544 [INFO] Loading artifacts from C:\Users\rumma\Desktop\Project - SecureScan\backend\models
+2025-11-12 14:44:16,339 [INFO] Artifacts loaded. model=True vectorizer=True thresholds=(0.6,0.45,0.55)
+2025-11-12 14:46:03,402 [INFO] [RESULT] http://youtube.com -> safe (p=0.052133) [ml_model]
+2025-11-12 14:47:06,486 [INFO] [RESULT] http://xvideos.com -> safe (p=0.081904) [ml_model]
+2025-11-12 14:47:19,858 [INFO] [HEURISTIC_REJECT] http://freemoneyforall.com -> suspicious_keyword
+2025-11-12 14:47:34,544 [INFO] [GRAY] http://iwantsugardaddy.com prob=0.5313 -> consult VT
+2025-11-12 14:47:38,188 [INFO] [RESULT] http://iwantsugardaddy.com -> safe (verified via VirusTotal) (p=0.531329) [ml_model+vt]
+2025-11-12 14:47:58,666 [INFO] [GRAY] http://google.com prob=0.5219 -> consult VT
+2025-11-12 14:48:01,706 [INFO] [RESULT] http://google.com -> safe (verified via VirusTotal) (p=0.52195) [ml_model+vt]
+2025-11-14 11:48:15,386 [INFO] Loading artifacts from C:\Users\rumma\Desktop\Project - SecureScan\backend\models
+2025-11-14 11:48:22,483 [INFO] Artifacts loaded. model=True vectorizer=True thresholds=(0.6,0.45,0.55)
+2025-12-03 14:59:45,116 [INFO] Loading artifacts from C:\Users\rumma\Desktop\Project - SecureScan\backend\models
+2025-12-03 15:00:00,480 [INFO] Artifacts loaded. model=True vectorizer=True thresholds=(0.6,0.45,0.55)

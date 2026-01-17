@@ -1,0 +1,28 @@
+{
+  "trained_at": "2025-11-03T12:35:25.243272Z",
+  "n_samples": 824240,
+  "n_features": 50000,
+  "threshold": 0.6,
+  "gray_zone": {
+    "low": 0.45,
+    "high": 0.55
+  },
+  "metrics": {
+    "accuracy": 0.9354152512213271,
+    "precision": 0.903823462957849,
+    "recall": 0.8965534415778464,
+    "f1_score": 0.9001737738939104
+  },
+  "vectorizer": {
+    "ngram_range": [
+      3,
+      7
+    ],
+    "max_features": 50000
+  },
+  "model": {
+    "C": 2.0,
+    "solver": "saga",
+    "penalty": "l2"
+  }
+}
